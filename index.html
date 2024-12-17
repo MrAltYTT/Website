@@ -61,16 +61,20 @@
             transform: translateX(0);
         }
 
-        /* Section-specific backgrounds */
-        #ordinary-world { background: linear-gradient(45deg, #D64B4B, #E67E5C); }         /* Red to Orange-Red */
-        #call-to-adventure { background: linear-gradient(45deg, #E67E5C, #F4A76F); }      /* Orange-Red to Orange */
-        #threshold { background: linear-gradient(45deg, #F4A76F, #FFD07B); }              /* Orange to Yellow */
-        #unfamiliar-world { background: linear-gradient(45deg, #FFD07B, #E4F18F); }       /* Yellow to Yellow-Green */
-        #challenges { background: linear-gradient(45deg, #E4F18F, #B7E1A1); }             /* Yellow-Green to Light Green */
-        #abyss { background: linear-gradient(45deg, #B7E1A1, #8ED4B5); }                  /* Light Green to Blue-Green */
-        #transformation { background: linear-gradient(45deg, #8ED4B5, #71B8D9); }         /* Blue-Green to Light Blue */
-        #atonement { background: linear-gradient(45deg, #71B8D9, #6A8EC8); }             /* Light Blue to Blue-Purple */
-        #return { background: linear-gradient(45deg, #6A8EC8, #D64B4B); }                 /* Blue-Purple back to Red */
+        /* Section-specific backgrounds - reordered and new sections added */
+        #ordinary-world { background: linear-gradient(45deg, #D64B4B, #E67E5C); }
+        #tempter { background: linear-gradient(45deg, #E67E5C, #EA8F65); }
+        #guardian { background: linear-gradient(45deg, #EA8F65, #EFA16A); }
+        #call-to-adventure { background: linear-gradient(45deg, #EFA16A, #F4A76F); }
+        #threshold { background: linear-gradient(45deg, #F4A76F, #FFD07B); }
+        #unfamiliar-world { background: linear-gradient(45deg, #FFD07B, #E4F18F); }
+        #challenges { background: linear-gradient(45deg, #E4F18F, #CBE695); }
+        #helpers { background: linear-gradient(45deg, #CBE695, #B7E1A1); }
+        #mentors { background: linear-gradient(45deg, #B7E1A1, #A2D8AB); }
+        #abyss { background: linear-gradient(45deg, #A2D8AB, #8ED4B5); }
+        #transformation { background: linear-gradient(45deg, #8ED4B5, #71B8D9); }
+        #atonement { background: linear-gradient(45deg, #71B8D9, #6A8EC8); }
+        #return { background: linear-gradient(45deg, #6A8EC8, #D64B4B); }
         
         
         
@@ -157,17 +161,19 @@
 <body>
     <div class="progress-bar"></div>
     <nav class="nav">
-        <a href="#ordinary-world"class="active"></a>
+        <a href="#ordinary-world" class="active"></a>
+        <a href="#tempter"></a>
+        <a href="#guardian"></a>
         <a href="#call-to-adventure"></a>
         <a href="#threshold"></a>
         <a href="#unfamiliar-world"></a>
         <a href="#challenges"></a>
+        <a href="#helpers"></a>
+        <a href="#mentors"></a>
         <a href="#abyss"></a>
         <a href="#transformation"></a>
         <a href="#atonement"></a>
         <a href="#return"></a>
-        
-        
     </nav>
     
     <div class="container">
@@ -182,9 +188,32 @@
             </div>
         </section>
         
+        <section id="tempter">
+            <div class="content-left">
+                <h1>The Tempter</h1>
+                <p>A figure who attempts to lead the hero astray from their destined path, offering easy but deceptive solutions.</p>
+                <blockquote>"All that glitters is not gold."</blockquote>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="The Tempter">
+            </div>
+        </section>
+
+        <section id="guardian">
+            <div class="content-left">
+                <h1>The Guardian</h1>
+                <p>A challenging figure who tests the hero's worthiness and readiness for the journey ahead.</p>
+                <blockquote>"None shall pass until proven worthy."</blockquote>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="The Guardian">
+            </div>
+        </section>
+
         <section id="call-to-adventure">
             <div class="content-left">
                 <h1>Call to Adventure</h1>
+
                 <p>Something disrupts the ordinary world, presenting a challenge or quest that must be undertaken.</p>
                 <blockquote>"Adventure is not outside man; it is within."</blockquote>
             </div>
@@ -222,6 +251,28 @@
             </div>
             <div class="image-container">
                 <img src="placeholder.jpg" alt="Challenges">
+            </div>
+        </section>
+
+        <section id="helpers">
+            <div class="content-left">
+                <h1>The Helpers</h1>
+                <p>Allies who assist the hero on their journey, providing support, tools, or wisdom.</p>
+                <blockquote>"A friend in need is a friend indeed."</blockquote>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="The Helpers">
+            </div>
+        </section>
+
+        <section id="mentors">
+            <div class="content-left">
+                <h1>The Mentors</h1>
+                <p>Wise guides who provide training, knowledge, and guidance to help the hero succeed.</p>
+                <blockquote>"When the student is ready, the teacher appears."</blockquote>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="The Mentors">
             </div>
         </section>
 
