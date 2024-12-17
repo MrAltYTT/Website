@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        /* Reset and basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Scroll snapping container */
+        .container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+
+        /* Individual sections */
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        /* Create left content container */
+        .content-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-right: 2rem;
+        }
+
+        /* Image container styling */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease 0.6s;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        section.active .image-container {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Section-specific backgrounds */
+        #ordinary-world { background: linear-gradient(45deg, #D64B4B, #E67E5C); }         /* Red to Orange-Red */
+        #call-to-adventure { background: linear-gradient(45deg, #E67E5C, #F4A76F); }      /* Orange-Red to Orange */
+        #threshold { background: linear-gradient(45deg, #F4A76F, #FFD07B); }              /* Orange to Yellow */
+        #unfamiliar-world { background: linear-gradient(45deg, #FFD07B, #E4F18F); }       /* Yellow to Yellow-Green */
+        #challenges { background: linear-gradient(45deg, #E4F18F, #B7E1A1); }             /* Yellow-Green to Light Green */
+        #abyss { background: linear-gradient(45deg, #B7E1A1, #8ED4B5); }                  /* Light Green to Blue-Green */
+        #transformation { background: linear-gradient(45deg, #8ED4B5, #71B8D9); }         /* Blue-Green to Light Blue */
+        #atonement { background: linear-gradient(45deg, #71B8D9, #6A8EC8); }             /* Light Blue to Blue-Purple */
+        #return { background: linear-gradient(45deg, #6A8EC8, #D64B4B); }                 /* Blue-Purple back to Red */
+        
+        
+        
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .nav a {
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 10px 0;
+            transition: 0.3s;
+        }
+
+        .nav a.active {
+            background: white;
+            transform: scale(1.5);
+        }
+
+        /* Content styling */
+        h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        p {
+            color: white;
+            max-width: 600px;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.2s;
+            margin-left: 0.5rem;
+        }
+
+        section.active h1,
+        section.active p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: white;
+            z-index: 1000;
+        }
+
+        /* Add new blockquote styling */
+        blockquote {
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            max-width: 500px;
+            margin-top: 2rem;
+            padding-left: 1rem;
+            border-left: 3px solid rgba(255, 255, 255, 0.6);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.4s;
+        }
+
+        section.active blockquote {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+    <nav class="nav">
+        <a href="#ordinary-world"class="active"></a>
+        <a href="#call-to-adventure"></a>
+        <a href="#threshold"></a>
+        <a href="#unfamiliar-world"></a>
+        <a href="#challenges"></a>
+        <a href="#abyss"></a>
+        <a href="#transformation"></a>
+        <a href="#atonement"></a>
+        <a href="#return"></a>
+        
+        
+    </nav>
+    
+    <div class="container">
+        <section id="ordinary-world">
+            <div class="content-left">
+                <h1>The Ordinary World</h1>
+                <p>Here we begin our journey in the familiar surroundings of the protagonist's normal life, before the adventure begins.</p>
+                <blockquote>"Life was simple, until it wasn't."</blockquote>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Ordinary World">
+            </div>
+        </section>
+        
+        <section id="call-to-adventure">
+            <div class="content-left">
+                <h1>Call to Adventure</h1>
+                <p>Something disrupts the ordinary world, presenting a challenge or quest that must be undertaken.</p>
+                <blockquote>"Adventure is not outside man; it is within."</blockquote>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Call to Adventure">
+            </div>
+        </section>
+
+        <section id="threshold">
+            <div class="content-left">
+                <h1>Crossing the Threshold</h1>
+                <p>The hero leaves their comfort zone and ventures into the unknown, marking the true beginning of their journey.</p>
+                <blockquote>"The cave you fear to enter holds the treasure you seek."</blockquote>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Crossing the Threshold">
+            </div>
+        </section>
+
+        <section id="unfamiliar-world">
+            <div class="content-left">
+                <h1>The Unfamiliar World</h1>
+                <p>In this new world, everything is different, challenging, and often dangerous. The hero must learn to navigate this strange environment.</p>
+                <blockquote>"Skibidi Toilet"</blockquote>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="The Unfamiliar World">
+            </div>
+        </section>
+        
+        <section id="challenges">
+            <div class="content-left">
+                <h1>Challenges</h1>
+                <p>The hero faces various tests, meets allies and enemies, and begins to learn the rules of this special world.</p>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Challenges">
+            </div>
+        </section>
+
+        <section id="abyss">
+            <div class="content-left">
+                <h1>The Abyss</h1>
+                <p>This is the hero's darkest hour, where they face their greatest fear or their most difficult challenge.</p>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="The Abyss">
+            </div>
+        </section>
+
+        <section id="transformation">
+            <div class="content-left">
+                <h1>Transformation & Revelation</h1>
+                <p>Through overcoming the abyss, the hero transforms and gains new insights or abilities.</p>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Transformation & Revelation">
+            </div>
+        </section>
+
+        <section id="atonement">
+            <div class="content-left">
+                <h1>Atonement</h1>
+                <p>The hero faces the consequences of their journey and reconciles their new self with the old world.</p>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Atonement">
+            </div>
+        </section>
+
+        <section id="return">
+            <div class="content-left">
+                <h1>The Return</h1>
+                <p>Changed by the journey, the hero returns to their ordinary world with new wisdom or power.</p>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="The Return">
+            </div>
+        </section>
+
+        
+          
+        
+
+        
+
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav a');
+            const progressBar = document.querySelector('.progress-bar');
+
+            // Intersection Observer for sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Update navigation
+                        navLinks.forEach(link => {
+                            if (link.getAttribute('href').slice(1) === entry.target.id) {
+                                link.classList.add('active');
+                            } else {
+                                link.classList.remove('active');
+                            }
+                        });
+                    } else {
+                        // Remove active class when section is not in view
+                        entry.target.classList.remove('active');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sections.forEach(section => observer.observe(section));
+
+            // Progress bar
+            document.querySelector('.container').addEventListener('scroll', () => {
+                const container = document.querySelector('.container');
+                const scrolled = container.scrollTop;
+                const maxScroll = container.scrollHeight - container.clientHeight;
+                const progress = (scrolled / maxScroll) * 100;
+                progressBar.style.width = `${progress}%`;
+            });
+
+            // Smooth scroll for navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
