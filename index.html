@@ -61,20 +61,20 @@
             transform: translateX(0);
         }
 
-        /* Section-specific backgrounds - reordered and new sections added */
-        #ordinary-world { background: linear-gradient(45deg, #D64B4B, #E67E5C); }
-        #tempter { background: linear-gradient(45deg, #E67E5C, #EA8F65); }
-        #guardian { background: linear-gradient(45deg, #EA8F65, #EFA16A); }
-        #call-to-adventure { background: linear-gradient(45deg, #EFA16A, #F4A76F); }
-        #threshold { background: linear-gradient(45deg, #F4A76F, #FFD07B); }
-        #unfamiliar-world { background: linear-gradient(45deg, #FFD07B, #E4F18F); }
-        #challenges { background: linear-gradient(45deg, #E4F18F, #CBE695); }
-        #helpers { background: linear-gradient(45deg, #CBE695, #B7E1A1); }
-        #mentors { background: linear-gradient(45deg, #B7E1A1, #A2D8AB); }
-        #abyss { background: linear-gradient(45deg, #A2D8AB, #8ED4B5); }
-        #transformation { background: linear-gradient(45deg, #8ED4B5, #71B8D9); }
-        #atonement { background: linear-gradient(45deg, #71B8D9, #6A8EC8); }
-        #return { background: linear-gradient(45deg, #6A8EC8, #D64B4B); }
+        /* Section-specific backgrounds - guardian removed */
+        #ordinary-world { background: linear-gradient(45deg, #2ecc71, #27ae60); }
+        #call-to-adventure { background: linear-gradient(45deg, #2ecc71, #27ae60); }
+        #tempter { background: linear-gradient(45deg, #2ecc71, #27ae60); }
+        #threshold { background: linear-gradient(45deg, #2ecc71, #27ae60); }
+        #unfamiliar-world { background: linear-gradient(45deg, #2ecc71, #27ae60); }
+        #challenges { background: linear-gradient(45deg, #229954, #1e8449); }
+        #helpers { background: linear-gradient(45deg, #229954, #1e8449); }
+        #mentors { background: linear-gradient(45deg, #229954, #1e8449); }
+        #abyss { background: linear-gradient(45deg, #0b3818, #0a2f15); }
+        #transformation { background: linear-gradient(45deg, #145a32, #0e4725); }
+        #atonement { background: linear-gradient(45deg, #196f3d, #166632); }
+        #return { background: linear-gradient(45deg, #2ecc71, #27ae60); }
+        #sources { background: linear-gradient(45deg, #2ecc71, #27ae60); }
         
         
         
@@ -156,15 +156,111 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .sources-content {
+            margin-top: 2rem;
+        }
+
+        .sources-content h2 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+            color: white;
+        }
+
+        .sources-content ul {
+            list-style: none;
+            padding-left: 0.5rem;
+        }
+
+        .sources-content li {
+            margin: 0.5rem 0;
+        }
+
+        .sources-content a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .sources-content a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* Add new decorative styles */
+        section::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            border-left: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        section::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            border-right: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Section number indicator */
+        .section-number {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-family: monospace;
+        }
+
+        /* Enhance content styling */
+        .content-left {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .content-left::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Enhanced image container */
+        .image-container {
+            position: relative;
+            padding: 20px;
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
     </style>
 </head>
 <body>
     <div class="progress-bar"></div>
     <nav class="nav">
         <a href="#ordinary-world" class="active"></a>
-        <a href="#tempter"></a>
-        <a href="#guardian"></a>
         <a href="#call-to-adventure"></a>
+        <a href="#tempter"></a>
         <a href="#threshold"></a>
         <a href="#unfamiliar-world"></a>
         <a href="#challenges"></a>
@@ -174,105 +270,72 @@
         <a href="#transformation"></a>
         <a href="#atonement"></a>
         <a href="#return"></a>
+        <a href="#sources"></a>
     </nav>
     
     <div class="container">
         <section id="ordinary-world">
             <div class="content-left">
                 <h1>The Ordinary World</h1>
-                <p>Here we begin our journey in the familiar surroundings of the protagonist's normal life, before the adventure begins.</p>
-                <blockquote>"Life was simple, until it wasn't."</blockquote>
+                <p>Junior’s ordinary world is the Spokane Indian Reservation, a place full of poverty and struggles. He is a 14-year-old boy with physical challenges, is bullied and often feels lonely. His family loves him, but they face financial problems like many others on the reservation. Junior’s world is full of hopes: he loves drawing cartoons and dreams of a better future, but he lives in a community where dreams are often crushed by problems like alcoholism. This everyday life prepares Junior for his journey, where he will grow and change.</p>
             </div>
             <div class="image-container">
-                <img src="placeholder.jpg" alt="Ordinary World">
+                <img src="image.png" alt="Ordinary World">
             </div>
         </section>
         
-        <section id="tempter">
-            <div class="content-left">
-                <h1>The Tempter</h1>
-                <p>A figure who attempts to lead the hero astray from their destined path, offering easy but deceptive solutions.</p>
-                <blockquote>"All that glitters is not gold."</blockquote>
-            </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="The Tempter">
-            </div>
-        </section>
-
-        <section id="guardian">
-            <div class="content-left">
-                <h1>The Guardian</h1>
-                <p>A challenging figure who tests the hero's worthiness and readiness for the journey ahead.</p>
-                <blockquote>"None shall pass until proven worthy."</blockquote>
-            </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="The Guardian">
-            </div>
-        </section>
-
         <section id="call-to-adventure">
             <div class="content-left">
                 <h1>Call to Adventure</h1>
 
-                <p>Something disrupts the ordinary world, presenting a challenge or quest that must be undertaken.</p>
-                <blockquote>"Adventure is not outside man; it is within."</blockquote>
+                <p>During a class, Junior discovers that his geometry textbook is the same one his mother used 30 years earlier. This realization symbolizes the lack of resources and opportunities on the reservation, making Junior feel trapped in a cycle of poverty. In frustration, he throws the book and accidentally hits his teacher, Mr. P. Later, he visits Junior and urges him to leave the reservation, telling him he deserves a better life. This becomes his call to adventure as it serves as a turning point for his life, giving him the push in order to start his adventure to Reardan High School. Mr. P is the Guardian of Juniors journey, as he is the one who instructs Junior to leave the reservation.</p>
             </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="Call to Adventure">
+            
+        </section>
+
+        <section id="tempter">
+            <div class="content-left">
+                <h1>The Tempter</h1>
+                <p>Rowdy serves as the tempter in Junior’s hero’s journey. As Junior’s best friend, he symbolizes the resistance to change and loyalty to his home. When Junior decides to leave the reservation for a better education and future, Rowdy feels betrayed and reacts with anger, resulting in him attempting to fight Junior. His actions force Junior to make a choice between The Reservation and his journey.</p>
             </div>
         </section>
 
         <section id="threshold">
             <div class="content-left">
-                <h1>Crossing the Threshold</h1>
-                <p>The hero leaves their comfort zone and ventures into the unknown, marking the true beginning of their journey.</p>
-                <blockquote>"The cave you fear to enter holds the treasure you seek."</blockquote>
+                <h1>The Threshold</h1>
+                <p>The Threshold is the 22 miles between Junior's home on the Spokane Reservation and the wealthy school in Reardan, which is made up of white people. This distance represents the cultural gap he must cross to pursue a better future. On his first day, Junior feels like an outsider as everyone stares at him, highlighting his isolation. </p>
             </div>
             <div class="image-container">
-                <img src="placeholder.jpg" alt="Crossing the Threshold">
+                <img src="threshold.png" alt="Crossing the Threshold">
             </div>
         </section>
 
         <section id="unfamiliar-world">
             <div class="content-left">
                 <h1>The Unfamiliar World</h1>
-                <p>In this new world, everything is different, challenging, and often dangerous. The hero must learn to navigate this strange environment.</p>
-                <blockquote>"Skibidi Toilet"</blockquote>
+                <p>The Unfamiliar world is Reardan, the all-white school Junior transfers to. Unlike the reservation, Reardan is a place of privilege, and opportunity, but it is also filled with higher expectations. During his time there, he feels like he does not fit in, and later on, he will have to face challenges. </p>
             </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="The Unfamiliar World">
-            </div>
+            
         </section>
         
         <section id="challenges">
             <div class="content-left">
                 <h1>Challenges</h1>
-                <p>The hero faces various tests, meets allies and enemies, and begins to learn the rules of this special world.</p>
-            </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="Challenges">
+                <p>Early on, Roger bullies him with a racist comment, but Junior punches him, and to his surprise, it earns Roger’s respect. As Junior starts making friends, he struggles to hide his poverty, pretending to forget lunch money or walking home so no one realizes he can’t afford a ride. Things get even harder during the first basketball game against Wellpinit, where the crowd turns on him, and Rowdy, his former best friend, injures him on the court. Then, tragedy strikes when Junior’s grandmother, one of the most important people in his life, dies after being hit by a drunk driver. Her death leaves Junior heartbroken, but he holds onto her wisdom and strength as he continues to find his way through his two worlds.</p>
             </div>
         </section>
 
         <section id="helpers">
             <div class="content-left">
                 <h1>The Helpers</h1>
-                <p>Allies who assist the hero on their journey, providing support, tools, or wisdom.</p>
-                <blockquote>"A friend in need is a friend indeed."</blockquote>
-            </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="The Helpers">
+                <p>Roger becomes a helper to Junior by supporting him and showing kindness as Junior adjusts to life at Reardan. After their initial conflict, Roger respects Junior and even looks out for him, treating him as a friend. He offers Junior a ride home from school events when he notices Junior walking long distances, helping him hide his poverty from others.</p>
             </div>
         </section>
 
         <section id="mentors">
             <div class="content-left">
-                <h1>The Mentors</h1>
-                <p>Wise guides who provide training, knowledge, and guidance to help the hero succeed.</p>
-                <blockquote>"When the student is ready, the teacher appears."</blockquote>
-            </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="The Mentors">
+                <h1>Mentor</h1>
+                <p>Junior’s grandmother is a mentor to him by using her wisdom and kindness. She’s known for being incredibly tolerant, and she teaches Junior to stay true to himself and treat others with respect. When Junior struggles with life at Reardan and the tension with his community, her lessons give him the strength to keep going. An example of this is when after the incident with Roger, her advice helps Junior understand how to handle the situation. Later on, they can become friends and Junior understands his relationship with Roger better.</p>
             </div>
         </section>
 
@@ -313,6 +376,30 @@
             </div>
             <div class="image-container">
                 <img src="placeholder.jpg" alt="The Return">
+            </div>
+        </section>
+
+        <section id="sources">
+            <div class="content-left">
+                <h1>Sources</h1>
+                <div class="sources-content">
+                    <h2>Images</h2>
+                    <ul>
+                        <li><a href="https://indianoutofplace.wordpress.com/2015/08/14/wellpinit/">Image 1 source</a></li>
+                        <li><a href="https://www.google.com/maps/@47.8487253,-117.9636726,3a,90y,47.53h,95.97t/data=!3m7!1e1!3m5!1stHtT6_yN841q3XLCLBCvUg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-5.972319062449486%26panoid%3DtHtT6_yN841q3XLCLBCvUg%26yaw%3D47.53245070496395!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D">Image 2 source</a></li>
+                        <li><a href="">Image 3 source</a></li>
+                        <li><a href="">Image 4 source</a></li>
+                        <li><a href="">Image 5 source</a></li>
+                        <li><a href="">Image 6 source</a></li>
+                        <li><a href="">Image 7 source</a></li>
+                        
+                    </ul>
+                    
+
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="placeholder.jpg" alt="Sources">
             </div>
         </section>
 
@@ -374,3 +461,4 @@
     </script>
 </body>
 </html>
+
