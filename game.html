@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .game-container {
+            position: relative;
+        }
+
+        #gameCanvas {
+            border: 2px solid #333;
+            image-rendering: pixelated;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #666;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">← Back</a>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="320" height="320"></canvas>
+        <div class="controls">Use arrow keys to move</div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Player
+        const player = {
+            x: 160,
+            y: 160,
+            size: 16,
+            speed: 2
+        };
+
+        // Simple map (0 = walkable, 1 = wall)
+        const map = [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1],
+            [1,0,1,1,0,1,0,1,1,1,1,1,1,0,1,0,1,1,0,1],
+            [1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1],
+            [1,0,1,0,1,1,1,1,1,0,0,1,1,1,1,1,0,1,0,1],
+            [1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,0,1,0,0,1,0,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1],
+            [1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,0,1,0,0,1,0,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1],
+            [1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1],
+            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+            [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        ];
+
+        // Game loop
+        function gameLoop() {
+            // Clear canvas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw map
+            for(let y = 0; y < map.length; y++) {
+                for(let x = 0; x < map[y].length; x++) {
+                    if(map[y][x] === 1) {
+                        ctx.fillStyle = '#333';
+                        ctx.fillRect(x * 16, y * 16, 16, 16);
+                    }
+                }
+            }
+
+            // Draw player
+            ctx.fillStyle = '#0f0';
+            ctx.fillRect(player.x, player.y, player.size, player.size);
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Handle keyboard input
+        const keys = {};
+        document.addEventListener('keydown', (e) => keys[e.key] = true);
+        document.addEventListener('keyup', (e) => keys[e.key] = false);
+
+        function update() {
+            // Movement
+            if(keys['ArrowUp']) player.y -= player.speed;
+            if(keys['ArrowDown']) player.y += player.speed;
+            if(keys['ArrowLeft']) player.x -= player.speed;
+            if(keys['ArrowRight']) player.x += player.speed;
+
+            // Simple collision detection
+            const gridX = Math.floor(player.x / 16);
+            const gridY = Math.floor(player.y / 16);
+
+            if(map[gridY][gridX] === 1) {
+                // Move player back if hitting a wall
+                if(keys['ArrowUp']) player.y += player.speed;
+                if(keys['ArrowDown']) player.y -= player.speed;
+                if(keys['ArrowLeft']) player.x += player.speed;
+                if(keys['ArrowRight']) player.x -= player.speed;
+            }
+
+            // Keep player in bounds
+            player.x = Math.max(0, Math.min(canvas.width - player.size, player.x));
+            player.y = Math.max(0, Math.min(canvas.height - player.size, player.y));
+
+            setTimeout(update, 1000/60);
+        }
+
+        gameLoop();
+        update();
+    </script>
+</body>
+</html> 

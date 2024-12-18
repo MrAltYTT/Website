@@ -82,6 +82,36 @@
         .back-button:hover {
             background: rgba(255, 255, 255, 0.2);
         }
+
+        /* Add these new styles before the closing style tag */
+        .next-page-indicator {
+            margin-top: 2rem;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .next-page-indicator:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .next-page-indicator span {
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .next-page-indicator span::after {
+            content: '→';
+            font-size: 1.4rem;
+        }
     </style>
 </head>
 <body>
@@ -91,25 +121,30 @@
         <div class="plot-points">
             <div class="plot-point">
                 <h2>Throwing the Geometry Textbook:</h2>
-                <p>The event that sets the story in motion and disrupts the protagonist's ordinary world.</p>
+                <p>After the incident in class, Mr. P visits Junior at his house. Junior feels nervous and expects to be punished, but Mr. P surprises him by sitting down and speaking gently. He tells Junior that he understands why he threw the book and admits that the reservation’s system has failed its people. Mr. P reveals his own regrets as a teacher, telling Junior that he once contributed to this cycle. Mr. P then urgently tells Junior to leave the reservation, telling him that he is one of the few who can escape and create a better life. He says that Junior's staying will only harm him, just like the many others who were stuck on the reservation. He listens, stunned, as he explains that his anger is a sign that he is meant for something better. This conversation leaves Junior determined as he embarks on the journey to Reardan</p>
             </div>
             <div class="plot-point">
                 <h2>Punching Roger</h2>
-                <p>The moment when the protagonist commits to the journey and crosses into the unfamiliar world.</p>
+                <p>One day at Reardan, Roger makes a racist joke about Junior during a conversation in the schoolyard. The other students laugh, and Junior feels humiliated. Recalling the rules from the reservation, he clenches his fist and punches Roger in the face. Roger stumbles back, stunned, holding his cheek, as everyone freezes in silence. Junior braces himself, expecting Roger to retaliate, but Roger doesn’t fight back. Instead, he just stares at Junior in shock, says nothing, and walks away with his friends. Junior is confused, but the next day, Roger treats him with more respect. He realizes that after he stands up for himself, Roger knows that he can fight back, earning his respect.</p>
             </div>
             <div class="plot-point">
                 <h2>The First Game Against Wellpinit</h2>
-                <p>A moment where the antagonistic force shows its true power and raises the stakes.</p>
+                <p>The first basketball game between Reardan and Wellpinit is intense and emotional for Junior. As soon as he steps onto the court at Wellpinit, the crowd boos him loudly, and people from his old community turn their backs on him. The hostility from the crowd is overwhelming for Junior, but he attempts to focus on the game. When the game starts, he faces Rowdy, who plays an aggressive game. At some point, someone in the crowd throws a coin at him. After he gets back into the game, Rowdy elbows Junior in the head, knocking him to the ground. The game continues as Junior is taken out to recover. He wakes up, humiliated and angered by the hatred directed at him by the people who were once part of his community. The game ends in a loss for Reardan, but for Junior, it is a painful reminder that his two worlds are now divided.</p>
             </div>
             <div class="plot-point">
-                <h2>Winning the Second Game Against Wellpinit</h2>
-                <p></p>
+                <h2>The Death of Junior's Grandmother</h2>
+                <p>Junior’s grandmother’s death is sudden and heartbreaking. She’s hit by a drunk driver while walking home one night, and the news shocks Junior and his family. She remains calm and kind, even in her final moments. Her last words are a request for the driver to be forgiven, showing the incredible tolerance she possessed in her life. Junior is devastated by this loss. This further pushes him to seek a better life outside of the reservation, hoping that he won't end up as a drunk person. At her funeral, two thousand people show up, but they all leave Junior alone and stop harassing him, showing the respect they have for his pain.</p>
             </div>
             <div class="plot-point">
                 <h2>Reconnecting with Rowdy</h2>
-                <p></p>
+                <p>One day, Rowdy shows up at Junior’s house unexpectedly, and instead of arguing, they head outside and start playing a one-on-one basketball game, just like they used to. As they play, Rowdy opens up, calling Junior a nomad, while he says he’ll stay rooted on the reservation. Rowdy mentions that he always knew Junior would leave because he is the only nomad left on the reservation. Rowdy’s words are honest, and they deeply move Junior. He cries, realizing that no matter what, he will always love and miss Rowdy. They play the entire night, forgetting the score as they enjoy their time together.</p>
             </div>
         </div>
+        
+        <!-- Add this navigation link after the plot-points div but before the closing container div -->
+        <a href="game.html" class="next-page-indicator">
+            <span>Explore the Reservation</span>
+        </a>
     </div>
 </body>
 </html> 
