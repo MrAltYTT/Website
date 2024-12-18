@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        /* Reset and basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #2ecc71 0%,
+                #229954 25%,
+                #0b3818 50%,
+                #229954 75%,
+                #2ecc71 100%
+            );
+            color: white;
+            padding: 2rem;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Content styling */
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .plot-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .plot-point {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .plot-point:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        /* Back button */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">← Back</a>
+    <div class="container">
+        <h1>Key Plot Points</h1>
+        <div class="plot-points">
+            <div class="plot-point">
+                <h2>Throwing the Geometry Textbook:</h2>
+                <p>The event that sets the story in motion and disrupts the protagonist's ordinary world.</p>
+            </div>
+            <div class="plot-point">
+                <h2>Punching Roger</h2>
+                <p>The moment when the protagonist commits to the journey and crosses into the unfamiliar world.</p>
+            </div>
+            <div class="plot-point">
+                <h2>The First Game Against Wellpinit</h2>
+                <p>A moment where the antagonistic force shows its true power and raises the stakes.</p>
+            </div>
+            <div class="plot-point">
+                <h2>Winning the Second Game Against Wellpinit</h2>
+                <p></p>
+            </div>
+            <div class="plot-point">
+                <h2>Reconnecting with Rowdy</h2>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

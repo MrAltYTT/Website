@@ -253,6 +253,82 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
         }
+
+        /* Add styles for the next-page bar */
+        .next-page-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .next-page-bar:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .next-page-bar span {
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .next-page-bar span::after {
+            content: '→';
+            font-size: 1.4rem;
+        }
+
+        /* Update navigation dots to include key plot points */
+        .nav .plot-points-link {
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav .plot-points-link:hover {
+            background: white;
+            transform: scale(1.5);
+        }
+
+        /* Add styles for the next page indicator */
+        .next-page-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .next-page-indicator:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .next-page-indicator span {
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .next-page-indicator span::after {
+            content: '→';
+            font-size: 1.4rem;
+        }
     </style>
 </head>
 <body>
@@ -270,7 +346,7 @@
         <a href="#transformation"></a>
         <a href="#atonement"></a>
         <a href="#return"></a>
-        <a href="#sources"></a>
+        <a href="key-plot-points.html" class="plot-points-link"></a>
     </nav>
     
     <div class="container">
@@ -345,41 +421,41 @@
         <section id="abyss">
             <div class="content-left">
                 <h1>The Abyss</h1>
-                <p>This is the hero's darkest hour, where they face their greatest fear or their most difficult challenge.</p>
+                <p>
+                    The abyss in Junior's journey happens during the second basketball game against Wellpinit, which is a critical turning point in the story of Junior. This time, Junior and his team beat Wellpinit, and Junior plays an essential role, scoring key points and guarding Rowdy. While the victory brings Junior a sense of accomplishment, it’s also bittersweet. He realizes that despite conquering his friends on the reservation, they are all facing the same poverty and challenges that he left behind on his journey.</p>
+
             </div>
             <div class="image-container">
-                <img src="placeholder.jpg" alt="The Abyss">
+                <img src="abyss.webp" alt="The Abyss">
             </div>
         </section>
 
         <section id="transformation">
             <div class="content-left">
                 <h1>Transformation & Revelation</h1>
-                <p>Through overcoming the abyss, the hero transforms and gains new insights or abilities.</p>
+                <p>Junior transforms when he realizes he has many identities and belongs to multiple tribes/communities. He recognizes that he isn’t just a member of the Spokane tribe but also belongs to the tribes of cartoonists, basketball players, and many more. This moment of realization helps him accept his complex identity, allowing him to move forward and accept that he can no longer identify with just one group of people.</p>
             </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="Transformation & Revelation">
-            </div>
+            
         </section>
 
         <section id="atonement">
             <div class="content-left">
                 <h1>Atonement</h1>
-                <p>The hero faces the consequences of their journey and reconciles their new self with the old world.</p>
-            </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="Atonement">
+                <p>The atonement happens when Junior begins to repair his friendship with Rowdy. After being angry for a long time, Rowdy visits Junior and opens up during a game of basketball. They acknowledge their differences, with Rowdy joking that Junior is a nomad who belongs to the world, while he belongs to the reservation. These words touch Junior, and he starts crying. This shows Junior’s acceptance of both before and after his journey.</p>
             </div>
         </section>
 
         <section id="return">
             <div class="content-left">
                 <h1>The Return</h1>
-                <p>Changed by the journey, the hero returns to their ordinary world with new wisdom or power.</p>
+                <p>Junior’s return comes when he accepts himself in both places. Although he may face challenges in High School and The Reservation, he carries the experiences from his journey, stronger and ready for what is to come next. He plans to hang out with Rowdy,</p>
             </div>
             <div class="image-container">
                 <img src="placeholder.jpg" alt="The Return">
             </div>
+            <a href="key-plot-points.html" class="next-page-indicator">
+                <span>Key Plot Points</span>
+            </a>
         </section>
 
         <section id="sources">
@@ -390,7 +466,7 @@
                     <ul>
                         <li><a href="https://indianoutofplace.wordpress.com/2015/08/14/wellpinit/">Image 1 source</a></li>
                         <li><a href="https://www.google.com/maps/@47.8487253,-117.9636726,3a,90y,47.53h,95.97t/data=!3m7!1e1!3m5!1stHtT6_yN841q3XLCLBCvUg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-5.972319062449486%26panoid%3DtHtT6_yN841q3XLCLBCvUg%26yaw%3D47.53245070496395!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D">Image 2 source</a></li>
-                        <li><a href="">Image 3 source</a></li>
+                        <li><a href="https://www.google.com/maps/@47.667298,-117.8760199,3a,75y,268.74h,101.44t/data=!3m7!1e1!3m5!1sazKR2QhMsBTc1FJoeeCCHQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-11.442389045007246%26panoid%3DazKR2QhMsBTc1FJoeeCCHQ%26yaw%3D268.74139603966285!7i3328!8i1664?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D">Image 3 source</a></li>
                         <li><a href="">Image 4 source</a></li>
                         <li><a href="">Image 5 source</a></li>
                         <li><a href="">Image 6 source</a></li>
@@ -400,9 +476,6 @@
                     
 
                 </div>
-            </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="Sources">
             </div>
         </section>
 
@@ -464,4 +537,3 @@
     </script>
 </body>
 </html>
-
