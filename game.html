@@ -8,31 +8,104 @@
         }
 
         body {
-            background: #111;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(135deg, #2ecc71 0%, #229954 25%, #0b3818 50%, #229954 75%, #2ecc71 100%);
             min-height: 100vh;
             font-family: Arial, sans-serif;
             color: white;
+            padding: 2rem;
         }
 
         .game-container {
-            position: relative;
-        }
-
-        #gameCanvas {
-            border: 2px solid #333;
-            image-rendering: pixelated;
-        }
-
-        .controls {
-            position: absolute;
-            bottom: -60px;
-            left: 0;
-            right: 0;
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
-            color: #666;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .lives {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .heart {
+            color: #ff4444;
+            font-size: 1.5rem;
+        }
+
+        .score {
+            font-size: 1.2rem;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem auto;
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .answer-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .answer-btn {
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .answer-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .answer-btn.correct {
+            background: rgba(46, 204, 113, 0.5);
+        }
+
+        .answer-btn.wrong {
+            background: rgba(231, 76, 60, 0.5);
+        }
+
+        #nextBtn {
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+        }
+
+        #nextBtn:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .back-button {
@@ -50,107 +123,367 @@
         .back-button:hover {
             background: rgba(255, 255, 255, 0.2);
         }
+
+        .game-over {
+            display: none;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .restart-btn {
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .restart-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .progress {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-button">← Back</a>
+    <a href="key-plot-points.html" class="back-button">← Back</a>
     <div class="game-container">
-        <canvas id="gameCanvas" width="320" height="320"></canvas>
-        <div class="controls">Use arrow keys to move</div>
+        <h1>The Hero's Journey Quiz</h1>
+        <div class="stats">
+            <div class="lives">
+                <span class="heart">❤️</span>
+                <span class="heart">❤️</span>
+                <span class="heart">❤️</span>
+            </div>
+            <div class="score">Score: 0</div>
+        </div>
+        <div class="card">
+            <h2 class="question-text"></h2>
+            <div class="answer-buttons">
+                <button class="answer-btn"></button>
+                <button class="answer-btn"></button>
+                <button class="answer-btn"></button>
+                <button class="answer-btn"></button>
+            </div>
+        </div>
+        <button id="nextBtn" style="display: none;">Next Question</button>
+        <div class="progress">Question 1</div>
+        <div class="game-over">
+            <h2>Game Over!</h2>
+            <p class="final-score">Final Score: 0</p>
+            <button class="restart-btn">Play Again</button>
+        </div>
     </div>
 
     <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        // Player
-        const player = {
-            x: 160,
-            y: 160,
-            size: 16,
-            speed: 2
-        };
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
 
-        // Simple map (0 = walkable, 1 = wall)
-        const map = [
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1],
-            [1,0,1,1,0,1,0,1,1,1,1,1,1,0,1,0,1,1,0,1],
-            [1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1],
-            [1,0,1,0,1,1,1,1,1,0,0,1,1,1,1,1,0,1,0,1],
-            [1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1],
-            [1,1,1,1,1,1,1,0,1,0,0,1,0,1,1,1,1,1,1,1],
-            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-            [1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1],
-            [1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1],
-            [1,1,1,1,1,1,1,0,1,0,0,1,0,1,1,1,1,1,1,1],
-            [1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1],
-            [1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1],
-            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-            [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-            [1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1],
-            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-            [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        const storyContent = [
+            {
+                title: "The Ordinary World",
+                questions: [
+                    {
+                        content: "Where does Junior's journey begin?",
+                        answer: "The Spokane Indian Reservation",
+                        wrongAnswers: ["Reardan High School", "Seattle", "Portland"]
+                    },
+                    {
+                        content: "What challenges does Junior face in his ordinary world?",
+                        answer: "Poverty and physical challenges",
+                        wrongAnswers: ["Too much homework", "Too many friends", "Too much attention"]
+                    },
+                    {
+                        content: "Who is Junior's best friend in the ordinary world?",
+                        answer: "Rowdy",
+                        wrongAnswers: ["Roger", "Gordy", "Penelope"]
+                    }
+                ]
+            },
+            {
+                title: "Call to Adventure",
+                questions: [
+                    {
+                        content: "What triggers Junior's call to adventure?",
+                        answer: "Finding his mother's name in his textbook",
+                        wrongAnswers: ["A school announcement", "A letter from Reardan", "A basketball game"]
+                    },
+                    {
+                        content: "Who encourages Junior to leave the reservation?",
+                        answer: "Mr. P",
+                        wrongAnswers: ["His parents", "Rowdy", "His grandmother"]
+                    }
+                ]
+            },
+            {
+                title: "The Tempter",
+                questions: [
+                    {
+                        content: "How does Rowdy react to Junior's decision to leave?",
+                        answer: "He punches Junior",
+                        wrongAnswers: ["He supports him", "He ignores him", "He celebrates"]
+                    },
+                    {
+                        content: "What does the tempter represent in Junior's journey?",
+                        answer: "Forces trying to keep him in his ordinary world",
+                        wrongAnswers: ["New opportunities", "Academic success", "Basketball glory"]
+                    }
+                ]
+            },
+            {
+                title: "Crossing the Threshold",
+                questions: [
+                    {
+                        content: "What physical distance must Junior travel to his new school?",
+                        answer: "22 miles",
+                        wrongAnswers: ["5 miles", "10 miles", "50 miles"]
+                    },
+                    {
+                        content: "What makes Junior's first day at Reardan significant?",
+                        answer: "He's the only Native American student",
+                        wrongAnswers: ["He's late to class", "He wins a game", "He makes many friends"]
+                    }
+                ]
+            },
+            {
+                title: "The Unfamiliar World",
+                questions: [
+                    {
+                        content: "What makes Reardan different from the reservation?",
+                        answer: "It's a privileged, all-white school",
+                        wrongAnswers: ["It's bigger", "It has no sports", "It's closer to home"]
+                    },
+                    {
+                        content: "What new challenge does Junior face at Reardan?",
+                        answer: "Cultural isolation",
+                        wrongAnswers: ["Difficult classes", "Long commute", "Bad food"]
+                    }
+                ]
+            },
+            {
+                title: "Challenges and Temptations",
+                questions: [
+                    {
+                        content: "What personal losses does Junior face during his journey?",
+                        answer: "His grandmother, Eugene, and his sister",
+                        wrongAnswers: ["His parents", "His teachers", "His new friends"]
+                    },
+                    {
+                        content: "What daily challenge does Junior try to hide?",
+                        answer: "His poverty",
+                        wrongAnswers: ["His grades", "His talent", "His family"]
+                    }
+                ]
+            },
+            {
+                title: "The Helpers",
+                questions: [
+                    {
+                        content: "Who helps Junior embrace his identity and love of learning?",
+                        answer: "Gordy",
+                        wrongAnswers: ["Roger", "Penelope", "Coach"]
+                    },
+                    {
+                        content: "How does Roger become a helper?",
+                        answer: "He respects Junior after their fight",
+                        wrongAnswers: ["He tutors Junior", "He gives Junior money", "He drives Junior home"]
+                    }
+                ]
+            },
+            {
+                title: "The Mentor",
+                questions: [
+                    {
+                        content: "What wisdom does Junior's grandmother share?",
+                        answer: "To stay true to himself and respect others",
+                        wrongAnswers: ["To get revenge", "To quit school", "To forget his culture"]
+                    },
+                    {
+                        content: "What makes grandmother a unique mentor?",
+                        answer: "Her tolerance and wisdom",
+                        wrongAnswers: ["Her wealth", "Her education", "Her connections"]
+                    }
+                ]
+            },
+            {
+                title: "The Abyss",
+                questions: [
+                    {
+                        content: "What makes Junior's victory against Wellpinit feel hollow?",
+                        answer: "The growing gap between his two worlds",
+                        wrongAnswers: ["The low score", "The bad weather", "The small crowd"]
+                    },
+                    {
+                        content: "What does Junior realize during this moment?",
+                        answer: "The cost of his success",
+                        wrongAnswers: ["His basketball skills", "His popularity", "His grades"]
+                    }
+                ]
+            },
+            {
+                title: "Transformation",
+                questions: [
+                    {
+                        content: "What does Junior realize about his identity?",
+                        answer: "He belongs to multiple tribes",
+                        wrongAnswers: ["He must choose one world", "He should stay on the reservation", "He should forget his past"]
+                    },
+                    {
+                        content: "What memory helps Junior see beauty in his past?",
+                        answer: "Climbing trees with Rowdy",
+                        wrongAnswers: ["School dances", "Basketball games", "Family dinners"]
+                    }
+                ]
+            },
+            {
+                title: "Atonement",
+                questions: [
+                    {
+                        content: "How do Junior and Rowdy reconcile?",
+                        answer: "Playing basketball together",
+                        wrongAnswers: ["Writing letters", "Fighting again", "Through their parents"]
+                    },
+                    {
+                        content: "What does Rowdy acknowledge about Junior?",
+                        answer: "He's a nomad who belongs to the world",
+                        wrongAnswers: ["He's a traitor", "He's a coward", "He's wrong"]
+                    }
+                ]
+            },
+            {
+                title: "The Return",
+                questions: [
+                    {
+                        content: "How does Junior's journey end?",
+                        answer: "Accepting his dual identity",
+                        wrongAnswers: ["Moving away forever", "Staying on the reservation", "Quitting school"]
+                    },
+                    {
+                        content: "What does Junior carry forward?",
+                        answer: "Experiences from both worlds",
+                        wrongAnswers: ["Only reservation memories", "Only Reardan memories", "No memories"]
+                    }
+                ]
+            }
         ];
 
-        // Game loop
-        function gameLoop() {
-            // Clear canvas
-            ctx.fillStyle = '#000';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        let currentScore = 0;
+        let lives = 3;
+        let canAnswer = true;
 
-            // Draw map
-            for(let y = 0; y < map.length; y++) {
-                for(let x = 0; x < map[y].length; x++) {
-                    if(map[y][x] === 1) {
-                        ctx.fillStyle = '#333';
-                        ctx.fillRect(x * 16, y * 16, 16, 16);
-                    }
+        // Get DOM elements
+        const questionText = document.querySelector('.question-text');
+        const answerButtons = document.querySelectorAll('.answer-btn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progress = document.querySelector('.progress');
+        const scoreDisplay = document.querySelector('.score');
+        const hearts = document.querySelectorAll('.heart');
+        const gameOver = document.querySelector('.game-over');
+
+        function getRandomQuestion() {
+            // Pick a random story point
+            const storyPoint = storyContent[Math.floor(Math.random() * storyContent.length)];
+            // Pick a random question from that story point
+            const question = storyPoint.questions[Math.floor(Math.random() * storyPoint.questions.length)];
+            return {
+                content: question.content,
+                correctAnswer: question.answer,
+                allAnswers: shuffleArray([question.answer, ...question.wrongAnswers])
+            };
+        }
+
+        function updateCard() {
+            if (lives <= 0) {
+                showGameOver();
+                return;
+            }
+
+            canAnswer = true;
+            nextBtn.style.display = 'none';
+            
+            const question = getRandomQuestion();
+            console.log('Question:', question); // Debug log
+            
+            questionText.textContent = question.content;
+
+            answerButtons.forEach((btn, index) => {
+                btn.textContent = question.allAnswers[index];
+                btn.classList.remove('correct', 'wrong');
+                btn.dataset.correct = (btn.textContent === question.correctAnswer);
+            });
+
+            progress.textContent = `Question ${currentScore + 1}`;
+            scoreDisplay.textContent = `Score: ${currentScore}`;
+        }
+
+        function checkAnswer(selectedAnswer) {
+            if (!canAnswer) return;
+            canAnswer = false;
+
+            const correctAnswer = Array.from(answerButtons)
+                .find(btn => btn.dataset.correct === 'true')
+                .textContent;
+
+            answerButtons.forEach(btn => {
+                if (btn.textContent === correctAnswer) {
+                    btn.classList.add('correct');
+                } else if (btn.textContent === selectedAnswer) {
+                    btn.classList.add('wrong');
                 }
+            });
+
+            if (selectedAnswer === correctAnswer) {
+                currentScore += 100;
+                scoreDisplay.textContent = `Score: ${currentScore}`;
+            } else {
+                lives--;
+                hearts[lives].style.opacity = '0.2';
             }
 
-            // Draw player
-            ctx.fillStyle = '#0f0';
-            ctx.fillRect(player.x, player.y, player.size, player.size);
-
-            requestAnimationFrame(gameLoop);
+            nextBtn.style.display = 'block';
         }
 
-        // Handle keyboard input
-        const keys = {};
-        document.addEventListener('keydown', (e) => keys[e.key] = true);
-        document.addEventListener('keyup', (e) => keys[e.key] = false);
-
-        function update() {
-            // Movement
-            if(keys['ArrowUp']) player.y -= player.speed;
-            if(keys['ArrowDown']) player.y += player.speed;
-            if(keys['ArrowLeft']) player.x -= player.speed;
-            if(keys['ArrowRight']) player.x += player.speed;
-
-            // Simple collision detection
-            const gridX = Math.floor(player.x / 16);
-            const gridY = Math.floor(player.y / 16);
-
-            if(map[gridY][gridX] === 1) {
-                // Move player back if hitting a wall
-                if(keys['ArrowUp']) player.y += player.speed;
-                if(keys['ArrowDown']) player.y -= player.speed;
-                if(keys['ArrowLeft']) player.x += player.speed;
-                if(keys['ArrowRight']) player.x -= player.speed;
-            }
-
-            // Keep player in bounds
-            player.x = Math.max(0, Math.min(canvas.width - player.size, player.x));
-            player.y = Math.max(0, Math.min(canvas.height - player.size, player.y));
-
-            setTimeout(update, 1000/60);
+        function showGameOver() {
+            const card = document.querySelector('.card');
+            card.style.display = 'none';
+            progress.style.display = 'none';
+            gameOver.style.display = 'block';
+            document.querySelector('.final-score').textContent = `Final Score: ${currentScore}`;
         }
 
-        gameLoop();
-        update();
+        function restartGame() {
+            lives = 3;
+            currentScore = 0;
+            hearts.forEach(heart => heart.style.opacity = '1');
+            scoreDisplay.textContent = `Score: ${currentScore}`;
+            document.querySelector('.card').style.display = 'block';
+            progress.style.display = 'block';
+            gameOver.style.display = 'none';
+            updateCard();
+        }
+
+        // Add event listeners
+        answerButtons.forEach(btn => {
+            btn.addEventListener('click', () => checkAnswer(btn.textContent));
+        });
+
+        nextBtn.addEventListener('click', updateCard);
+        document.querySelector('.restart-btn').addEventListener('click', restartGame);
+
+        // Initialize the game
+        console.log('Starting game...'); // Debug log
+        updateCard();
     </script>
 </body>
 </html> 

@@ -37,6 +37,7 @@
             justify-content: flex-start;
             align-items: flex-start;
             padding-right: 2rem;
+            height: calc(100vh - 8rem); /* Account for section padding */
         }
 
         /* Image container styling */
@@ -121,6 +122,21 @@
             transform: translateY(30px);
             transition: all 0.8s ease 0.2s;
             margin-left: 0.5rem;
+            /* Base font size */
+            font-size: 1rem;
+        }
+
+        /* Add dynamic font sizing based on content length */
+        .content-left p.small-text {
+            font-size: 1rem;
+        }
+
+        .content-left p.medium-text {
+            font-size: 1.25rem;
+        }
+
+        .content-left p.large-text {
+            font-size: 1.5rem;
         }
 
         section.active h1,
@@ -329,6 +345,67 @@
             content: '→';
             font-size: 1.4rem;
         }
+
+        /* Update content-left styling */
+        .content-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-right: 2rem;
+            height: calc(100vh - 8rem); /* Account for section padding */
+        }
+
+        .content-left p {
+            color: white;
+            max-width: 600px;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.2s;
+            margin-left: 0.5rem;
+            height: 100%;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        /* Adjust heading to take less space */
+        .content-left h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Keep dynamic font sizing */
+        .content-left p.small-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+        }
+
+        .content-left p.medium-text {
+            font-size: 1.6rem;
+            line-height: 1.5;
+        }
+
+        .content-left p.large-text {
+            font-size: 1.8rem;
+            line-height: 1.4;
+        }
+
+        /* Add subtle scrollbar styling */
+        .content-left p::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .content-left p::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .content-left p::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -372,7 +449,7 @@
         <section id="tempter">
             <div class="content-left">
                 <h1>The Tempter</h1>
-                <p>Rowdy serves as the tempter in Junior’s hero’s journey. As Junior’s best friend, he symbolizes the resistance to change and loyalty to his home. When Junior decides to leave the reservation for a better education and future, Rowdy feels betrayed and reacts with anger, resulting in him attempting to fight Junior. His actions force Junior to make a choice between The Reservation and his journey.</p>
+                <p>When Junior tells Rowdy he’s transferring to Reardan, Rowdy is devastated. To him, Junior isn’t just a friend; he’s like family, one person Rowdy can trust and rely on in a life filled with pain and instability. Rowdy feels abandoned, interpreting Junior’s decision as a betrayal of their friendship and the life they've lived on the reservation. His pain quickly turns to anger, and in a moment of emotion, he punches Junior in the face. The punch isn’t just about anger, it’s Rowdy’s way of expressing how much he values Junior and doesn’t want to lose him. By hitting Junior, Rowdy hopes to keep him from leaving, desperate to hold onto the one friend who helps him find joy in his life.</p>
             </div>
         </section>
 
@@ -389,7 +466,7 @@
         <section id="unfamiliar-world">
             <div class="content-left">
                 <h1>The Unfamiliar World</h1>
-                <p>The Unfamiliar world is Reardan, the all-white school Junior transfers to. Unlike the reservation, Reardan is a place of privilege, and opportunity, but it is also filled with higher expectations. During his time there, he feels like he does not fit in, and later on, he will have to face challenges. </p>
+                <p>The Unfamiliar world is Reardan, the all-white school Junior transfers to. Unlike the reservation, Reardan is a place of privilege, and opportunity, but it is also filled with higher expectations. At first, Junior struggles to fit in at Reardan, feeling isolated and out of place as the only Native American student. He faces subtle racism and stereotypes, which highlight the cultural gap between him and his classmates. Over time, however, Junior begins to prove himself through his determination, excelling in both academics and basketball, which slowly earns him respect and helps him find his place. </p>
             </div>
             <div class="image-container">
                 <img src="reardon.png" alt="Unfamiliar World">
@@ -400,14 +477,14 @@
         <section id="challenges">
             <div class="content-left">
                 <h1>Challenges</h1>
-                <p>Early on, Roger bullies him with a racist comment, but Junior punches him, and to his surprise, it earns Roger’s respect. As Junior starts making friends, he struggles to hide his poverty, pretending to forget lunch money or walking home so no one realizes he can’t afford a ride. Things get even harder during the first basketball game against Wellpinit, where the crowd turns on him, and Rowdy, his former best friend, injures him on the court. Then, tragedy strikes when Junior’s grandmother, one of the most important people in his life, dies after being hit by a drunk driver. Her death leaves Junior heartbroken, but he holds onto her wisdom and strength as he continues to find his way through his two worlds.</p>
+                <p>Early on, Roger bullies him with a racist comment, but Junior punches him, and to his surprise, it earns Roger’s respect. As Junior starts making friends, he struggles to hide his poverty, pretending to forget lunch money or walking home so no one realizes he can’t afford a ride. Things also get more complicated when he gets closer to a beautiful girl named Penelope. While trying to sort our his feelings, he also must hide from her the fact that he is actually very poor. Things get even harder during the first basketball game against Wellpinit, where the crowd turns on him, and Rowdy, his former best friend, injures him on the court. Then, tragedy strikes when Junior’s grandmother, one of the most important people in his life, dies after being hit by a drunk driver. Her death leaves Junior heartbroken, but he holds onto her wisdom as he continues to live out this challenging life. More of his close relatives die after his grandmother. Eugene, Junior’s dad’s best friend, is killed in a drunken argument, and finally, his sister dies in a fire while sleeping. All of this builds up on Junior, leading up to the deepest point of the Hero’s Journey, the Abyss.</p>
             </div>
         </section>
 
         <section id="helpers">
             <div class="content-left">
                 <h1>The Helpers</h1>
-                <p>Roger becomes a helper to Junior by supporting him and showing kindness as Junior adjusts to life at Reardan. After their initial conflict, Roger respects Junior and even looks out for him, treating him as a friend. He offers Junior a ride home from school events when he notices Junior walking long distances, helping him hide his poverty from others.</p>
+                <p>Roger becomes a helper to Junior by supporting him and showing kindness as Junior adjusts to life at Reardan. After their initial conflict, Roger respects Junior and even looks out for him, treating him as a friend. He offers Junior a ride home from school events when he notices Junior walking long distances, helping him hide his poverty from others. Gordy becomes a helper to Junior by being his first real friend at Reardan who values learning and individual identity. After Junior stands up for himself in class, Gordy defends him and later bonds with him over their shared love of books and curiosity. Gordy helps Junior see the importance of embracing himself rather than trying to fit in. Through Gordy’s friendship, Junior finds confidence in his academic abilities and learns to value his unique perspective of the world.</p>
             </div>
         </section>
 
@@ -421,8 +498,7 @@
         <section id="abyss">
             <div class="content-left">
                 <h1>The Abyss</h1>
-                <p>
-                    The abyss in Junior's journey happens during the second basketball game against Wellpinit, which is a critical turning point in the story of Junior. This time, Junior and his team beat Wellpinit, and Junior plays an essential role, scoring key points and guarding Rowdy. While the victory brings Junior a sense of accomplishment, it’s also bittersweet. He realizes that despite conquering his friends on the reservation, they are all facing the same poverty and challenges that he left behind on his journey.</p>
+                <p>Junior’s second basketball game against Wellpinit is filled with emotional tension and significance. His exceptional performance on the court helps Reardan secure a hard-earned victory, and his teammates erupt in celebration. But while everyone around him is celebrating, Junior looks across the court at his old teammates and feels something much heavier. He sees the pain and resentment in their faces and is hit with the realization that, to them, he’s no longer one of their own. Instead, they see him as a traitor who abandoned his community and everything they share. The victory, instead of feeling like a pure triumph, forces Junior to reflect on the growing gap between his two worlds. At Reardan, he’s surrounded by privilege, opportunity, and a future full of possibilities. At Wellpinit, his old friends are trapped in poverty and struggle, with fewer chances to escape. Junior feels a wave of guilt wash over him as he realizes the cost of his success. It is not just a win for Reardan but a loss for the team and the life he left behind. It’s a bittersweet moment, filled with guilt and understanding between the two worlds he lives in.</p>
 
             </div>
             <div class="image-container">
@@ -433,7 +509,7 @@
         <section id="transformation">
             <div class="content-left">
                 <h1>Transformation & Revelation</h1>
-                <p>Junior transforms when he realizes he has many identities and belongs to multiple tribes/communities. He recognizes that he isn’t just a member of the Spokane tribe but also belongs to the tribes of cartoonists, basketball players, and many more. This moment of realization helps him accept his complex identity, allowing him to move forward and accept that he can no longer identify with just one group of people.</p>
+                <p>Junior transforms when he realizes he has many identities and belongs to multiple tribes/communities. He recognizes that he isn’t just a member of the Spokane tribe but also belongs to the tribes of cartoonists, basketball players, and many more. This moment of realization helps him accept his complex identity, allowing him to move forward and accept that he can no longer identify with just one group of people. Junior transforms when he realizes he has many identities and belongs to multiple tribes/communities. He recognizes that he isn’t just a member of the Spokane tribe but also belongs to the tribes of cartoonists, basketball players, and many more. This moment of realization helps him accept his complex identity, allowing him to move forward and accept that he can no longer identify with just one group of people. Junior’s revelation happens when he remembers climbing the tallest tree on the reservation with Rowdy. When they finally reached the top, they stayed. To them, it was almost as if they were looking at the entire world. After reflecting on that moment, Junior realizes the reservation isn’t just about poverty and pain, it’s also where some of his best memories and happiest moments happened. He starts to see the beauty of the place, not just in the land, but in the memories and people that are there on the reservation. This memory helps Junior understand that he doesn’t have to let go of the reservation completely to move forward. He can move forward, while still carrying the memories he had on the reservation.</p>
             </div>
             
         </section>
@@ -441,7 +517,7 @@
         <section id="atonement">
             <div class="content-left">
                 <h1>Atonement</h1>
-                <p>The atonement happens when Junior begins to repair his friendship with Rowdy. After being angry for a long time, Rowdy visits Junior and opens up during a game of basketball. They acknowledge their differences, with Rowdy joking that Junior is a nomad who belongs to the world, while he belongs to the reservation. These words touch Junior, and he starts crying. This shows Junior’s acceptance of both before and after his journey.</p>
+                <p>The atonement happens when Junior begins to repair his friendship with Rowdy. After being angry for a long time, Rowdy visits Junior and opens up during a game of basketball. They acknowledge their differences, with Rowdy stating that Junior is a nomad who belongs to the world, while he belongs to the reservation. These words touch Junior, and he starts crying. This shows Junior’s acceptance of both before and after his journey.</p>
             </div>
         </section>
 
@@ -449,9 +525,6 @@
             <div class="content-left">
                 <h1>The Return</h1>
                 <p>Junior’s return comes when he accepts himself in both places. Although he may face challenges in High School and The Reservation, he carries the experiences from his journey, stronger and ready for what is to come next. He plans to hang out with Rowdy,</p>
-            </div>
-            <div class="image-container">
-                <img src="placeholder.jpg" alt="The Return">
             </div>
             <a href="key-plot-points.html" class="next-page-indicator">
                 <span>Key Plot Points</span>
@@ -530,6 +603,21 @@
                     const targetId = link.getAttribute('href');
                     document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
                 });
+            });
+
+            // Add font size adjustment
+            const paragraphs = document.querySelectorAll('.content-left p');
+            
+            paragraphs.forEach(p => {
+                const length = p.textContent.length;
+                
+                if (length < 200) {
+                    p.classList.add('large-text');
+                } else if (length < 400) {
+                    p.classList.add('medium-text');
+                } else {
+                    p.classList.add('small-text');
+                }
             });
         });
     </script>
